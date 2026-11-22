@@ -69,10 +69,19 @@ p, h1, h2, h3, h4, h5, h6 {
    padding: 12px 36px;
    box-shadow: 4px 4px 0;
    border: 3px solid var(--color-navy);
+   transition: all 0.1s;
 }
 
 .btn:hover {
     color: var(--color-teal);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0;
+}
+
+.btn:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0;
+    outline: 2px solid transparent;
 }
 
 @media (min-width: 700px) {
