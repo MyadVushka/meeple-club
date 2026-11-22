@@ -46,6 +46,9 @@ p, h1, h2, h3, h4, h5, h6 {
             aspect-ratio: 1/1;
         }
     }
+    .header__link:focus-visible {
+        outline: 2px solid var(--color-navy);
+    }
 
     .header__navigation {
         display: flex;
@@ -55,6 +58,10 @@ p, h1, h2, h3, h4, h5, h6 {
             color: var(--color-navy);
             font-weight: 600;
             padding: 8px 0;
+        }
+        >a:focus-visible {
+            outline: 2px solid var(--color-navy);
+            outline-offset: 1px;
         }
     }
 }
@@ -85,7 +92,13 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 700px) {
+    html {
+        scroll-padding-top: 100px;
+    }
     .header {
+        position: sticky;
+        top: 0px;
+        z-index: 999;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
