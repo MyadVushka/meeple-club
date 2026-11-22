@@ -126,6 +126,8 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .section-start {
     padding: var(--space-l) var(--space-s);
+    position: relative;
+    overflow: clip;
 }
 
 .section-start__info {
@@ -135,6 +137,8 @@ p, h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .section-start__info-addr {
@@ -158,6 +162,54 @@ p, h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: center;
     gap: var(--space-m);
+}
+
+.section-start__assets {
+    display: none;
+    >img {
+        position: absolute;
+        width: 100px;
+        transform: translate(calc(var(--mx, 0) * var(--depth)), calc(var(--my, 0) * var(--depth)));
+        transition: transform 0.3s ease-out;
+    }
+    >img:nth-child(1) {
+        left: 7%;
+        top: 12%;
+        rotate: -12deg;
+        --depth: 90px;
+    }
+    >img:nth-child(2) {
+        left: 86%;
+        top: 8%;
+        rotate: 14deg;
+        --depth: 40px;
+    }
+    >img:nth-child(3) {
+        left: 6%;
+        top: 66%;
+        rotate: 8deg;
+        --depth: 70px;
+    }
+    >img:nth-child(4) {
+        left: 85%;
+        top: 66%;
+        rotate: -10deg;
+        --depth: 120px;
+    }
+    >img:nth-child(5) {
+        left: 2%;
+        top: 40%;
+        rotate: -6deg;
+        width: 80px;
+        --depth: 60px;
+    }
+    >img:nth-child(6) {
+        left: 91%;
+        top: 38%;
+        rotate: 10deg;
+        width: 80px;
+        --depth: 80px;
+    }
 }
 
 .section-start__info-btns > a {
@@ -199,4 +251,29 @@ p, h1, h2, h3, h4, h5, h6 {
     .section-start__title {
         font-size: 108px;
     }
+    .section-start__info-btns {
+        flex-direction: row;
+        margin-top: var(--space-l);
+    }
+}
+
+@media (min-width: 1000px) {
+    .section-start__assets {
+        display: block;
+    }
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .section-start { view-timeline: --hero; }
+        .section-start__assets > img {
+            animation: hero-parallax linear both;
+            animation-timeline: --hero;
+            animation-range: exit;
+        }
+    }
+}
+
+@keyframes hero-parallax {
+    to { translate: 0 calc(var(--depth) * -1); }
 }
